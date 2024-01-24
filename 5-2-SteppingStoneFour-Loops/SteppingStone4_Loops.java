@@ -53,7 +53,6 @@ public class SteppingStone4_Loops {
             
        } while (addMoreIngredients);
        
-       System.out.println("I am out of loop");
        for (int i = 0; i < ingredientList.size(); i++) {
            /** 
 		   * Get the item i from the ingredient list
@@ -66,7 +65,13 @@ public class SteppingStone4_Loops {
            System.out.println(ingredient);
        }
     }
+
+
+
+
 }
+
+
 
 
 

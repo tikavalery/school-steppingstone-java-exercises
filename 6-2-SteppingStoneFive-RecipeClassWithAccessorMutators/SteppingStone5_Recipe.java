@@ -1,11 +1,15 @@
-package SteppingStones;
+
+
+
+
+// package SteppingStones;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class SteppingStone5_Recipe {
     
-    private String recipeName;
+    private String recipeName;//we create a String variable that will hold the recipe name
     
     /**
      * Add three variables:
@@ -18,39 +22,90 @@ public class SteppingStone5_Recipe {
      * 3. a variable totalRecipeCalories 
      * 
      */ 
-    
+    private int servings = 0; // we create a serving variable that will hold the total number of servings in a meal
+
+    ArrayList<String> recipeIngredients = new ArrayList<String>(); //we create a an array list to hold the list of ingredients for our recipre
+
+    private double totalRecipeCalories = 0.0;// we create a variable to hold the total number of calories in the whole recipe
+     
     
     /**
      * Add mutators and accessors for the class variable.
      * 
      */
+    public void setRecipeName(String recipeName) { // we create a mutator for setting the name of the recipes which will be passed to our test class 
+        this.recipeName = recipeName; 
+    }
+    
+    public String getRecipeName() {// we create an accessor for getting recipe name which will be passed to our steppingstone test class
+        return recipeName;
+    }
+    
+    public void setServings(int servings) {// create a mutator for setting the servings
+        this.servings = servings;
+    }
+    
+    public int getServings() {//create an accessor for getting the servings
+        return servings;
+    }
+    
+    public void setRecipeIngredients(ArrayList<String> recipeIngredients) {// create a muttator to setting the recipe ingredients
+    this.recipeIngredients = recipeIngredients;
+    }
+    
+    public ArrayList<String> getRecipeIngredients() {//create an accessor for getting recipre ingredients
+        return recipeIngredients;
+    }
+    
+    public void setTotalRecipeCalories(double totalRecipeCalories) {// create a mutator for setting total recipe calories
+        this.totalRecipeCalories = totalRecipeCalories;
+    }
+    
+    public double getTotalRecipeCalories() { //create an accessor to getting total recipre calories
+        return totalRecipeCalories;
+    }
      
     
-    public SteppingStone5_Recipe() {
+    public SteppingStone5_Recipe() { // here we create a construtor for intializing the class attribute
         this.recipeName = "";
-        this.servings = ??? //<--- assignment value with appropriate data type
-        this.recipeIngredients = ???; //<-- assignment value for empty ArrayList
-        this.totalRecipeCalories = 0;
+        this.servings = 0; //<--- assignment value with appropriate data type
+        this.recipeIngredients = new ArrayList<String>(); //<-- assignment value for empty ArrayList
+        this.totalRecipeCalories = 0.0;
         
     }
-    public SteppingStone5_Recipe(String recipeName, ??? servings, 
-    	ArrayList<????> recipeIngredients, double totalRecipeCalories) 
+    public SteppingStone5_Recipe(String recipeName, int servings, 
+    	ArrayList<String> recipeIngredients, double totalRecipeCalories) // here we overload a second constructor with parameters
+        
     //<-- use appropriate data type for the ArrayList and the servings arguments
     {
         this.recipeName = recipeName;
         this.servings = servings;
-        this.recipeIngredients = recipeIngredients
+        this.recipeIngredients = recipeIngredients;
         this.totalRecipeCalories = totalRecipeCalories;
     }
     
-    public void printRecipe() {
+    public void printRecipe() {// we create a print method for printing our recipe ,ingredients ,servings and calories
         /**
          * Declare an int variable singleServingCalories.
          * Assign singleServingCalories to
          * the totalRecipeCalories divided by the servings
          * 
          */
-         
+
+         int totalRecipeCaloriesInterger = (int)totalRecipeCalories; // type cast a double variable to an int variable
+         int singleServingCalories = 0;
+
+         singleServingCalories = totalRecipeCaloriesInterger/servings;
+
+         System.out.println("Recipe: " + recipeName);
+         System.out.println("Serves: " + servings);
+
+         System.out.println("Recipe ingredients are as follows");
+         for (int i = 0; i < recipeIngredients.size(); i++) {
+            System.out.println(recipeIngredients.get(i));
+          }
+
+        System.out.println("Each serving has " + singleServingCalories + " Calories");
 
         /**
          * Print the following recipe information:
@@ -70,39 +125,49 @@ public class SteppingStone5_Recipe {
     
     
     public static void main(String[] args) {
-        ??? totalRecipeCalories = ???;
+        double totalRecipeCalories = 0.0;
         ArrayList <String> recipeIngredients = new ArrayList();
         boolean addMoreIngredients = true;
         
         Scanner scnr = new Scanner(System.in);
+
         
-        System.out.println("Please enter the recipe name: ");
+        System.out.println("Please enter the recipe name: ");// promt the user for recipe name and save in the recipename variable
         String recipeName = scnr.nextLine();
         
-        System.out.println("Please enter the number of servings: ");
+        System.out.println("Please enter the number of servings: ");// prompt user for servings and save in the serving variable
         //correct data type & Scanner assignment method for servings variable
-        ???? servings = ???? 
-        
-                
-        do {
-            System.out.println("Please enter the ingredient name 
-                or type end if you are finished entering ingredients: ");
+       
+        int servings = scnr.nextInt();
+        //   scnr.nextLine();
+     
+
+        do {// we loop over and over to get all the ingredients, thier amounts and calories from each ingredient
+
+                     
+            System.out.println("Please enter the ingredient name or type end if you are finished entering ingredients: ");
             String ingredientName = scnr.next();
             if (ingredientName.toLowerCase().equals("end")) {
                 addMoreIngredients = false;
+                break;
             } else {
-
+              
+                recipeIngredients.add(ingredientName); // add ingredient to recipeingredient arraylist
+                addMoreIngredients = true;
             /**
             * Add the ingredient name to recipeIngredients
             * 
             */
         
-                System.out.println("Please enter the ingredient amount: ");
-                float ingredientAmount = scnr.nextFloat();
+                System.out.print("Please enter the ingredient amount: ");
+                int ingredientAmount = scnr.nextInt();
             
                 System.out.println("Please enter the ingredient Calories: ");
                 int ingredientCalories = scnr.nextInt();
+
+                // System.out.println(reply);
                 
+                 totalRecipeCalories = totalRecipeCalories + (ingredientCalories * ingredientAmount);
                 /**
                 * Add the total Calories from this ingredient
                 *  (ingredientCalories * ingredientAmount)
@@ -112,11 +177,11 @@ public class SteppingStone5_Recipe {
             
             }
            
-       } while (!reply.equals("n") ;
+       } while (addMoreIngredients ==true) ;// so far as addmore is true we keep looping over and over
         
-        SteppingStone5_Recipe recipe1 = new SteppingStone5_Recipe(recipeName, 
+        SteppingStone5_Recipe recipe1 = new SteppingStone5_Recipe(recipeName, // create a recipre object
             servings, recipeIngredients, totalRecipeCalories);
-        recipe1.printRecipe();
+        recipe1.printRecipe();// call the print method to print the recipe and its ingredients and colories and servings
     }
 }
 

@@ -1,8 +1,11 @@
 {
     "java.project.sourcePaths": [
         "STEPING STONE LAP 2/Steping-Stone-Two/src",
+        "Final-Project",
+        "5-2-SteppingStoneFour-Loops",
         "4-2-SteppingStoneThree-Branches",
         "3-2-SteppingStoneTwo-DataTypes",
-        "5-2-SteppingStoneFour-Loops"
-    ]
+        "6-2-SteppingStoneFive-RecipeClassWithAccessorMutators"
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
 }
